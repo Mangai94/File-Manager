@@ -1,11 +1,11 @@
 import "./App.css";
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import FileManager from "./Components/filemanager";
 import RightPanel from "./Components/rightPanel";
 import Navbar from "./Components/Navbar";
 import FilenameModal from "./Components/FilenameModal";
 import filexp from "./Services/folderdata";
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 
 class App extends Component {
 	state = {
@@ -117,12 +117,11 @@ class App extends Component {
 
 			if (lookUpObj[path] != null) {
 				parent = lookUpObj[path];
-				parent.modified_on = new Date();
 				lookUpObj = lookUpObj[path].children;
 			}
 		}
 
-		if (lookUpObj == null) {
+		if (!parent.children) {
 			parent.children = {};
 		}
 
@@ -179,7 +178,7 @@ class App extends Component {
 		this.setState({ data: originalData, lastRefresh: new Date().toString() });
 	};
 
-	renameItem = () => {};
+	renameItem = () => { };
 
 	render() {
 		return (
