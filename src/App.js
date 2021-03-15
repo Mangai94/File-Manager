@@ -36,6 +36,7 @@ class App extends Component {
 		var input = filexp.getData("data");
 		if (!input) filexp.initializeData();
 		var fileData = filexp.getData("data");
+		console.log("filedata", fileData)
 		this.setState({
 			data: fileData,
 			folderData: fileData["root"].children,
@@ -88,7 +89,7 @@ class App extends Component {
 	};
 
 	modifyFolder = (type, name, action) => {
-		let pathArray = this.props.location.pathname.substring(1).split("/");
+		let pathArray = this.state.activePath.substring(1).split("/");
 		if (action == "Rename") this.renameFolder(name, pathArray);
 		else this.create(type, name, pathArray);
 	};
