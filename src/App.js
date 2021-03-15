@@ -66,7 +66,7 @@ class App extends Component {
 
 	displayFolderData = (name, children) => {
 		this.setDisplayOptions(true);
-		this.setState({ selectedFolderName: name, folderData: children });
+		this.setState({ selectedFolderName: name, folderData: children, activeItem: null });
 	};
 
 	openModal = (action, type) => {
