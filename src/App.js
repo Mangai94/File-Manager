@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import LeftPanel from "./Components/leftPanel";
 import RightPanel from "./Components/rightPanel";
-import Navbar from "./Components/navBar"
+import Navbar from "./Components/navBar";
 import FilenameModal from "./Components/fileNameModal";
 import filexp from "./Services/folderdata";
 
