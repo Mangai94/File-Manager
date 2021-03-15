@@ -1,10 +1,10 @@
 import "./App.css";
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import FileManager from "./Components/filemanager";
+import LeftPanel from "./Components/leftPanel";
 import RightPanel from "./Components/rightPanel";
-import Navbar from "./Components/Navbar";
-import FilenameModal from "./Components/FilenameModal";
+import Navbar from "./Components/navBar";
+import FilenameModal from "./Components/fileNameModal";
 import filexp from "./Services/folderdata";
 
 class App extends Component {
@@ -70,11 +70,6 @@ class App extends Component {
 	};
 
 	openModal = (action, type) => {
-		if (!this.state.selectedFolderName || this.state.selectedFolderName == "") {
-			alert("Please select a path to create folder");
-			return;
-		}
-
 		let text = action == "edit" ? this.state.activeItem : "";
 		let btnText = action == "edit" ? "Rename" : "Create";
 		this.setState({ showModal: true, inputText: text, btnText, modalHeading: type == 1 ? "Folder" : "File" });
@@ -135,7 +130,7 @@ class App extends Component {
 		parent.children[name] = newItem;
 		filexp.setData(originalData);
 
-		this.setState({ data: originalData, showModal: false, lastRefresh: new Date().toString() });
+		this.setState({ data: originalData, showModal: false, lastRefresh: new Date().toString(), activeItem: name });
 	};
 
 	renameFolder = (name, pathArray) => {
@@ -151,7 +146,7 @@ class App extends Component {
 		}
 
 		filexp.setData(originalData);
-		this.setState({ data: originalData, showModal: false, inputText: "", lastRefresh: new Date().toString() });
+		this.setState({ data: originalData, showModal: false, inputText: "", lastRefresh: new Date().toString(), activeItem: name });
 	};
 
 	handleMenuPress = () => {
@@ -176,7 +171,7 @@ class App extends Component {
 
 		delete lookUpObj[this.state.activeItem];
 		filexp.setData(originalData);
-		this.setState({ data: originalData, lastRefresh: new Date().toString() });
+		this.setState({ data: originalData, lastRefresh: new Date().toString(), activeItem: null });
 	};
 
 	renameItem = () => { };
@@ -205,7 +200,7 @@ class App extends Component {
 							onMouseEnter={() => this.setState({ showIcons: true })}
 							onMouseLeave={() => this.setState({ showIcons: true })}
 						>
-							<FileManager
+							<LeftPanel
 								data={this.state.data["root"]}
 								showIcons={this.state.showIcons}
 								level={0}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const FileManager = ({ data, showIcons, path1, level, displayFolderData, name, url, bubbleSelect, lastRefresh }) => {
+const LeftPanel = ({ data, showIcons, path1, level, displayFolderData, name, url, bubbleSelect, lastRefresh }) => {
 	const history = useHistory();
 	const currentPath = `${path1}/${name}`;
 	const [isExpanded, setIsExpanded] = useState(false);
@@ -83,7 +83,7 @@ const FileManager = ({ data, showIcons, path1, level, displayFolderData, name, u
 						.sort()
 						.map(k => (
 							<div key={k}>
-								<FileManager
+								<LeftPanel
 									data={data.children[k]}
 									showIcons={showIcons}
 									level={level + 1}
@@ -101,4 +101,4 @@ const FileManager = ({ data, showIcons, path1, level, displayFolderData, name, u
 	);
 };
 
-export default FileManager;
+export default LeftPanel;
